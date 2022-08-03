@@ -1,8 +1,13 @@
 import requests, pytz, datetime
 from timezonefinder import TimezoneFinder
+from dotenv import load_dotenv
+import os
 
+def configure():
+    load_dotenv()
+    
 def weatherdata(loc,unit="celsius"):
-    key = "48f53b07efce15903939a0cf525a2791"
+    key = os.getenv("api")
     url = f"https://api.openweathermap.org/data/2.5/weather?q={loc}&appid={key}"
     response = requests.get(url).json()
     if response['cod'] == '404': 

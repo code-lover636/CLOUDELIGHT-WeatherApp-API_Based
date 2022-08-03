@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400;700&family=Macondo&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// colours
+$lightblue: #28C7FA;
+$purple: #775ADA;
+$darkblue: #002651;
+$red: #FF304F;
+$yellow: #DBFF00;
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body{
+    background-color: $darkblue;
+    padding-bottom: 3em;
+}
+
+.hero{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .logo{
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        img{
+            width: 145px;
+            height: 145px;
+        }
+        h1{
+            position: absolute;
+            left:25px;
+            bottom: 30%;
+            font-size: 1.8rem;
+            color: $yellow;
+            margin-top: 20px;
+            font-family: 'Macondo';
+
+        }
+    }
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        position: absolute;
+        top: 170px;
+
+        input{
+            width: 60vw;
+            height: 28px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+            padding-left: .7em;
+            font-family: "Arima Madurai";
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            color: $red;
+        }
+        button{
+            width: 28px;
+            height: 28px;
+            background-color: $yellow;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+            margin-left: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            svg{
+                width: 20px;
+                height: 20px;
+                fill: $darkblue;
+            }
+        }
+
+    }
+    .board{
+        width: 80vw;
+        background: rgba(255, 255, 255, 0.19);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 230px;
+        padding-bottom: 1em;
+        .temp{
+            display: flex;
+            width: 100%;
+            padding-left: 1em;
+            padding-right: 3em;
+            justify-content: space-between;
+            align-items: center;
+            img{
+                width: 150px;
+                height: 150px;
+            }
+            h1{
+                font-size: 3rem;
+                font-family: 'Macondo';
+                color: $red;
+                margin-top: 20px;
+                sup{
+                    font-size: 2rem;
+                    color: $yellow
+                }
+            }
+        }
+        ul{
+            list-style-type: none;
+            text-align: center;
+
+            font-family: 'Arima Madurai';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.2rem;
+            line-height: 38px;
+            color: #28C7FA;
+        }
+        .loc{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1em;
+            h1{
+                font-size: 2rem;
+                font-family: 'Arima Madurai';
+                color: $red;
+            }
+            h4{ 
+                padding-left: 1em;
+                font-size: 1rem;
+                font-family: 'Arima Madurai';
+                color: white;
+                
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1000px){
+    .hero {
+        .logo{
+            top: 1em;
+            left: 10vw;
+            img{
+                width: 200px;
+                height: 200px;
+            }
+            h1{
+                left: 50px;
+                font-size: 2rem;
+            }
+        }
+        form {
+            width: 80vw;
+            top: 130px;
+            padding-left: 10vw;
+            justify-content: right;
+            input{
+                width: 30vw;
+            }
+        }
+        .board{
+            height: 55vh;
+            .temp{
+                transform: translateX(-10em);
+                width: auto;
+                h1{font-size: 4rem;}
+            }
+            ul{
+                height: 100%;  
+                text-align: left;
+                position: absolute;
+                right: 5em;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 1.3rem;
+                line-height: 40px;
+                 
+            }
+            .loc{
+                transform: translateX(-10em);
+                flex-direction: row;
+                width: auto;
+                justify-content: space-between;
+                justify-content: none;
+                align-items: none;
+                h1{
+                    font-size: 2.5rem;
+                    padding-right: 2em;
+                }
+            }
+        } 
+    }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClOUDELIGHT| Weather App</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="icon" href="../static/assets/logo.svg" type="image/x-icon">
+</head>
+<body>
+    <section class="hero">
+
+        <div class="logo">
+            <img src="../static/assets/logo.svg" alt="logo">   
+            <h1>CLOUDELIGHT</h1>
+        </div>
+        
+        <form action="/" method="POST">
+            <input type="text" name="city" placeholder="Enter city name...">
+            <button type="submit">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_9_6)">
+                    <path d="M18.3469 16.1625C19.8599 14.098 20.5375 11.5383 20.2443 8.99555C19.951 6.45283 18.7085 4.1146 16.7653 2.44864C14.8221 0.782694 12.3215 -0.088115 9.76387 0.0104368C7.20619 0.108989 4.78004 1.16963 2.97079 2.98017C1.16155 4.79071 0.102639 7.21762 0.00591743 9.77537C-0.0908042 12.3331 0.781793 14.8331 2.44913 16.7751C4.11648 18.7171 6.4556 19.9579 8.99853 20.2494C11.5415 20.5408 14.1007 19.8613 16.1641 18.3469H16.1626C16.2094 18.4094 16.2594 18.4688 16.3157 18.5266L22.3313 24.5422C22.6243 24.8354 23.0217 25.0002 23.4362 25.0003C23.8507 25.0005 24.2483 24.836 24.5415 24.543C24.8347 24.25 24.9994 23.8525 24.9996 23.4381C24.9997 23.0236 24.8352 22.626 24.5422 22.3328L18.5266 16.3172C18.4708 16.2606 18.4107 16.2084 18.3469 16.1609V16.1625ZM18.7501 10.1563C18.7501 11.2848 18.5278 12.4023 18.0959 13.4449C17.664 14.4876 17.031 15.4349 16.233 16.233C15.435 17.031 14.4876 17.664 13.445 18.0958C12.4024 18.5277 11.2849 18.75 10.1563 18.75C9.02776 18.75 7.91027 18.5277 6.86762 18.0958C5.82498 17.664 4.87761 17.031 4.07961 16.233C3.28161 15.4349 2.6486 14.4876 2.21672 13.4449C1.78484 12.4023 1.56256 11.2848 1.56256 10.1563C1.56256 7.87705 2.46797 5.6912 4.07961 4.07956C5.69125 2.46792 7.87711 1.5625 10.1563 1.5625C12.4355 1.5625 14.6214 2.46792 16.233 4.07956C17.8446 5.6912 18.7501 7.87705 18.7501 10.1563V10.1563Z" fill="#002651"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_9_6">
+                    <rect width="25" height="25" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </button>
+        </form>
+
+        <div class="board">
+            <div class="temp">
+                <img src="{{data['icon']}}" alt="weather">
+                <h1>{{data["temp"]}}<sup>°c</sup></h1>
+            </div>
+
+            <ul>
+                {% for item in data %}
+                    {% if item not in ["temp","icon", "day","time","timezone", "description","location","id"] and data[item] not in [0,'0']%}
+                        <li>{{item.title()}}: {{data[item]}}</li>
+                    {% endif %}
+                {%endfor%}
+            </ul>
+
+            <div class="loc">
+                <h1>{{data["location"]}}</h1>
+                <h4>{{data["day"]}}, {{data["time"]}} <br>
+                    {{data["description"]}}
+                </h4>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- {% if data["error"] %}
+        <script>
+            const msg=document.querySelector('.msg');
+            const close=document.querySelector('.close');
+            msg.classList.add('showmsg');
+        </script>
+    {%endif%} -->
+        
+</body>
+<script>
+    close.addEventListener('click',function(){
+        msg.classList.add('showmsg');
+        console.log("clicked");
+    });
+</script>
+</html>

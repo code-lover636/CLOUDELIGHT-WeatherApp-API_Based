@@ -1,1 +1,1 @@
-web: gunicorn cloudelight: app
+web: gunicorn app:app

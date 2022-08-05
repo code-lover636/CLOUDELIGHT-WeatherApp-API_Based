@@ -16,19 +16,25 @@ def weatherdata(loc,unit="celsius"):
                 "location":"",
                 "time":"Please try another city",
                 "day":"No weather data available"}
-
-    data = {"latitude":response["coord"]["lat"] if "coord" in response else 0,
-            "longitude":response["coord"]["lon"] if "coord" in response else 0,
-            "humidity":str(response["main"]["humidity"])+" %" if "humidity" in response["main"] else 0,
-            "pressure":str(response["main"]["pressure"])+" hPa" if "pressure" in response["main"] else 0,
-            "description":response["weather"][0]["description"] if "weather" in response else 0,
-            "speed":str(response["wind"]["speed"])+" mps" if "wind" in response else 0,
-            "visibility":str(response["visibility"])+" m" if "visibility" in response else 0,
-            "icon": f"http://openweathermap.org/img/wn/{response['weather'][0]['icon']}@2x.png",
-            "temp":response["main"]["temp"] if "temp" in response["main"] else 0,
-            "location":response["name"] if "name" in response else 0,
-            "timezone":response["timezone"] if "timezone" in response else 0,
-            "id":response["id"] if "id" in response else 0}
+    try:
+        data = {"latitude":response["coord"]["lat"] if "coord" in response else 0,
+                "longitude":response["coord"]["lon"] if "coord" in response else 0,
+                "humidity":str(response["main"]["humidity"])+" %" if "humidity" in response["main"] else 0,
+                "pressure":str(response["main"]["pressure"])+" hPa" if "pressure" in response["main"] else 0,
+                "description":response["weather"][0]["description"] if "weather" in response else 0,
+                "speed":str(response["wind"]["speed"])+" mps" if "wind" in response else 0,
+                "visibility":str(response["visibility"])+" m" if "visibility" in response else 0,
+                "icon": f"http://openweathermap.org/img/wn/{response['weather'][0]['icon']}@2x.png",
+                "temp":response["main"]["temp"] if "temp" in response["main"] else 0,
+                "location":response["name"] if "name" in response else 0,
+                "timezone":response["timezone"] if "timezone" in response else 0,
+                "id":response["id"] if "id" in response else 0}
+    except KeyError:
+            return {"icon":"https://cdn-icons-png.flaticon.com/512/1146/1146869.png",
+                "temp":"0", 
+                "location":"",
+                "time":"Please try another city",
+                "day":"No weather data available"}
     
     for key in data:
         if data[key]==0:

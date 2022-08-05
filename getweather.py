@@ -17,18 +17,22 @@ def weatherdata(loc,unit="celsius"):
                 "time":"Please try another city",
                 "day":"No weather data available"}
 
-    data = {"latitude":response["coord"]["lat"],
-            "longitude":response["coord"]["lon"],
-            "humidity":str(response["main"]["humidity"])+" %",
-            "pressure":str(response["main"]["pressure"])+" hPa",
-            "description":response["weather"][0]["description"],
-            "speed":str(response["wind"]["speed"])+" mps",
-            "visibility":str(response["visibility"])+" m",
+    data = {"latitude":response["coord"]["lat"] if "coord" in response else 0,
+            "longitude":response["coord"]["lon"] if "coord" in response else 0,
+            "humidity":str(response["main"]["humidity"])+" %" if "humidity" in response["main"] else 0,
+            "pressure":str(response["main"]["pressure"])+" hPa" if "pressure" in response["main"] else 0,
+            "description":response["weather"][0]["description"] if "weather" in response else 0,
+            "speed":str(response["wind"]["speed"])+" mps" if "wind" in response else 0,
+            "visibility":str(response["visibility"])+" m" if "visibility" in response else 0,
             "icon": f"http://openweathermap.org/img/wn/{response['weather'][0]['icon']}@2x.png",
-            "temp":response["main"]["temp"],
-            "location":response["name"],
+            "temp":response["main"]["temp"] if "temp" in response["main"] else 0,
+            "location":response["name"] if "name" in response else 0,
             "timezone":response["timezone"] if "timezone" in response else 0,
-            "id":response["id"]}
+            "id":response["id"] if "id" in response else 0}
+    
+    for key in data:
+        if data[key]==0:
+            data.pop(key)
     if "rain" in response:
         if "1h" in response["rain"]:
             data["rain"] = str(response["rain"]["1h"])+" mm" 
